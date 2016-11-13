@@ -1,0 +1,18 @@
+{
+  "name": "SmartOnFHIR",
+  "version": "1.0.0",
+  "description": "An app used for electronic  medical records",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongodb": "*",
+    "mongoose": "~4.6.1",
+    "socket.io": "~1.4.8",
+    "body-parser": "~1.15.2"
+  },
+  "author": "ying li",
+  "license": "BSD-2-Clause"
+}

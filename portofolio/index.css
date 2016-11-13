@@ -1,0 +1,288 @@
+
+body {
+	background-color :rgb(179, 224, 255);
+}
+
+
+svg {
+	background-color: rgb(179, 224, 255);
+	padding :0px;
+	margin:0px;
+
+}
+
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+
+.secondsvg{
+	background-color:grey/*#9CC105*//*#FFD94C*//*rgb(179, 224, 255)*/;
+}
+
+
+.secondsvg #mypath {
+    stroke: grey/*#9CC105*//*#FFD94C*//*rgb(179, 224, 255)*/;
+    stroke-width: .5;
+
+    fill:url(#grad);
+}
+
+.color-transparent {
+    stop-color:transparent;
+   	stop-opacity:1
+}
+
+.color-purple {
+    stop-color:/*#B05BE0;*/ /*rgb(173, 66, 244)*//*#9CC105*//*#FF4F0C*/rgb(179, 224, 255);
+    stop-opacity:1
+}
+
+.thirdsvg {
+  background-color: transparent;
+}
+
+
+#road01,#road02{
+  transform :scale(0.22);
+}
+
+#road03,#road04{
+	transform:scale(.22);
+}
+
+#text{
+  display:none;
+  position:absolute;
+  height:500px;
+  width:500px;
+  background-color:transparent/* rgb(179, 224, 255)*/;
+  bottom:-300px;
+  /*left:28%;*/
+  height:500px;
+  z-index:12;
+}
+
+#people {
+	display:none;
+	position:absolute;
+	height:500px;
+	width:500px;
+	background-color:grey/* rgb(179, 224, 255)*/;
+	bottom:-200px;
+	left:28%;
+	height:500px;
+	z-index:11;
+}
+
+#overlay img:hover{
+  transform:scale(3);
+}
+
+#gmail img{
+  position:absolute;
+  height:30px;
+  width:30px;
+  bottom:93px;
+  right : 190px;
+}
+
+#linkedin img{
+  position:absolute;
+  height:34px;
+  width:34px;
+  bottom:90px;
+  right : 150px;
+}
+
+#github img{
+  position:absolute;
+  height:36px;
+  width:36px;
+  bottom:90px;
+  right : 110px;
+}
+
+#about img{
+  position:absolute;
+  height:27px;
+  width:27px;
+  bottom:95px;
+  right : 76px;
+}
+#overlay{
+  background-color: grey/*#9CC105*//*#FFD94C*//*rgb(179, 224, 255)*/;
+  min-height: 680px;
+  opacity : 0;
+  visibility:hidden;
+  width:100%; 
+  height:100%; 
+  z-index:10;
+  top: 0;
+  left:0; 
+  position:absolute;
+}
+
+@keyframes woman_up {
+	from { transform :translate(0); }
+	to{ transform:translate(0px,-300px); }
+}
+#people.active {
+	display:block;
+	animation: woman_up 1s forwards;
+}
+#text.active{
+  display:block;
+  animation: woman_up 1s forwards;
+}
+
+@keyframes fade_in {
+	from { 
+		opacity:0;
+		visibility:hidden;
+	 }
+	to {
+		opacity:.95;
+		visibility:visible;
+	}
+}
+#overlay.active{
+  animation : fade_in .25s forwards;
+}
+
+@keyframes glass_appear {
+      from {
+              transform :scale(0.01) ;
+             opacity:0;
+               visibility:hidden;
+       }
+       to {
+              transform:scale(1.2) ;
+               opacity:1;
+              visibility:visible;
+       }
+}
+
+
+#glass00, #glass01,#glass02,#glass03,#glass04,#glass05,#glass06,#glass07,#glass08,#glass09{
+		opacity:0;
+		visibility:hidden;
+}
+
+#glass00.appear{
+    opacity:1;
+	visibility:visible;
+	transform-origin:center center;
+  	animation:glass_appear 0.25s  cubic-bezier(.17,.89,.32,2.5) forwards;
+  }
+
+#glass01.appear{
+
+	transform-origin:center center;
+  	animation:glass_appear 0.25s  cubic-bezier(.17,.89,.32,2.5) forwards;
+  }
+
+
+#glass02.appear{
+
+	transform-origin:center center;
+  	animation:glass_appear 0.25s  cubic-bezier(.17,.89,.32,2.5) forwards;
+  }
+
+ #glass03.appear{
+
+	transform-origin:center center;
+  	animation:glass_appear 0.25s  cubic-bezier(.17,.89,.32,2.5) forwards;
+  }
+
+ #glass04.appear{
+
+	transform-origin:center center;
+  	animation:glass_appear 0.25s   cubic-bezier(.17,.89,.32,2.5) forwards;
+  }
+
+  #glass05.appear{
+
+	transform-origin:center center;
+  	animation:glass_appear 0.25s  cubic-bezier(.17,.89,.32,2.5) forwards;
+  } 
+
+  #glass06.appear{
+
+	transform-origin:center center;
+  	animation:glass_appear 0.25s  cubic-bezier(.17,.89,.32,2.5) forwards;
+  }
+
+  #glass07.appear{
+
+	transform-origin:center center;
+  	animation:glass_appear 0.25s   cubic-bezier(.17,.89,.32,2.5) forwards;
+  }
+
+  #glass08.appear{
+
+	transform-origin:center center;
+  	animation:glass_appear 0.25s  cubic-bezier(.17,.89,.32,2.5) forwards;
+  }
+
+  @keyframes run {
+  	from {transform:translate(2000px,35px);}
+  	to {transform:translate(25px,35px);}
+  }
+  @keyframes skew{
+  	from {transform : skewX(60deg);}
+  	to{transform : skewX(0deg);}
+  }
+  
+  #glass09.appear{
+  	opacity:1;
+	visibility:visible;
+	transform-origin:center center;
+  	animation:run 1s forwards;
+  }
+
+  #glass09.appear #skew_melon {
+  	animation:skew 1s cubic-bezier(.17,.89,.32,2.5) forwards;
+  }
+
+  @keyframes drop{
+  	/*0% {transform: translate(0px,0px);}*/
+  	100% { transform :translate(30px,80px); }
+  }
+  #melon.stop {
+  	animation: drop 0.1s  forwards;
+  }
+
+
+
+@keyframes carmoving {
+  0% {transform :translateX(0px);}
+  
+  100% {transform:translate(2000px);}
+}
+
+@keyframes movingback{
+  
+  0% {transform: translateX(0px);}
+  40% {transform:translateX(-1000px);}
+  100% {transform :translateX(-3000px);}
+}
+
+
+#car.moving {
+  transform:translateX(0px);
+  transform-origin:center center;  
+  animation: carmoving 6s forwards;
+}
+
+#plane.moving{
+  transform-origin:center center;  
+  animation: movingback 6s forwards;
+}
+
+
+.disappear{
+  display:none;
+}

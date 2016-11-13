@@ -1,0 +1,532 @@
+$(document).ready(function(){
+	
+	//smart on fhir authorization
+	// get the URL parameters received from the authorization server
+        var state = getUrlParameter("state");  // session key
+        var code = getUrlParameter("code");    // authorization code
+        
+        // load the app parameters stored in the session
+        var params = JSON.parse(sessionStorage[state]);  // load app session
+        var tokenUri = params.tokenUri;
+        var clientId = params.clientId;
+        var secret = params.secret;
+        var serviceUri = params.serviceUri;
+        var redirectUri = params.redirectUri;
+		
+		//for epic non-auth test
+		var epicUri = "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2";
+		var epicID = "TjCjF-tnRjUTB4LE.iDJUsNHYATLKtDUSAurMUsjaqIAB";
+		
+	var accessToken;
+        var patientId;
+		
+	var url;
+	
+	// Prep the token exchange call parameters
+        var data = {
+            code: code,
+            grant_type: 'authorization_code',
+            redirect_uri: redirectUri
+        };
+        var options;
+        if (!secret) {
+            data['client_id'] = clientId;
+        }
+        options = {
+            url: tokenUri,
+            type: 'POST',
+            data: data
+        };
+        if (secret) {
+            options['headers'] = {'Authorization': 'Basic ' + btoa(clientId + ':' + secret)};
+        }
+        
+        // obtain authorization token from the authorization service using the authorization code
+        $.ajax(options).done(function(res){
+            // should get back the access token and the patient ID
+            accessToken = res.access_token;
+            patientId = res.patient;
+		});
+	
+	
+	//store the patient name and ids
+	var patients = {
+		"SMART, Wilma": 4342008,
+		"SMART, Nancy": 4342009,
+		"SMART, Joe": 4342010,
+		"SMART, Hailey": 4342011,
+		"SMART, Timmy": 4342012,
+		"SMART, FRED RICK": 4478007,
+		"PETERS, TIMOTHY": 1316024,
+		"Test Robot": 4342009,//add for epic non-auth test
+	};
+	//store the information types
+	var info_types = [
+		"Patient",
+		"MedicationOrder",
+		"Immunization",
+		"AllergyIntolerance"
+	];
+	
+	
+	//store user choice
+	var data_type;
+	var dtype;
+	var all_datas;
+	
+
+  var currentData = [];
+
+	 $('#download_button').on('click',function(){
+		$('.submit_form').addClass('active');
+		$('.modal-overlay').addClass('active');
+
+		//console.log('submitted 0000000');
+		$('#paraData').css("display","block");
+		$('#collapse1').hide();
+		$('#collapse2').hide();
+		$('#collapse3').hide();
+		$('#collapse4').hide();
+		$('#collapse5').hide();
+		$('#collapse6').hide();
+		$('#collapse7').hide();
+		$('#collapse8').hide();
+		$('#collapse9').hide();
+		$('#collapse10').hide();
+		$('#collapse11').hide();
+		$('#collapse12').hide();
+	});
+
+
+   $('.submit_form  #close').on('click',function(){
+   		$('.submit_form').removeClass('active');
+		$('.modal-overlay').removeClass('active');
+		//console.log('submitted 111111');
+   });
+
+   //$("#download_button").on("click",function(){
+   //   $("#pannel_body").text(currentData);
+   //})
+
+   $('#Submit').on('click',function(){
+   		$('.submit_form').removeClass('active');
+		$('.modal-overlay').removeClass('active');
+		var select_info = $('#selectpicker').val();
+		var input_info = $('#selectPatient').val();
+		  
+		data_type = select_info;
+		patientId = patients[input_info];
+        
+		//console.log(select_info);
+		//console.log(input_info);
+
+        $('#pannel_head').text("Data information - " + "Data Type : " + select_info + " ; " 
+        	+ "Patient ID : " + patientId);
+
+        $('#pannel_head').append($("<button id= 'save' class='btn btn-success btn-xs'><span class ='glyphicon glyphicon-briefcase'></span> Save</button> "));
+        //console.log("insert 2222222");
+
+        $('#download_button').addClass("disabled");
+        $('#blue').hide();
+        $('#blue').removeClass('col-md-2');
+        $('#progress').css("display","block");
+        $('#progress').addClass('col-md-2');
+		
+		
+		//add epic non-auth test
+		if(input_info == "Test Robot") {
+		    if(data_type == "All"){
+                url = serviceUri + "/Patient/" + patientId;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+                        "Accept": "application/json+fhir",
+                        "Authorization": "Bearer " + accessToken
+                    },
+                }).done(function(pt){
+                    $('#paraData').hide();
+                    $("#collapse6").css("display","block");
+                    $("#colpre6").text(JSON.stringify(pt, null, 4));
+                
+                    url = epicUri + "/Patient/" + epicID;
+                    $.ajax({
+                        url: url,
+                        type: "GET",
+                        dataType: "json",
+                        headers: {
+                            "Accept": "application/json+fhir",
+                        },
+                    }).done(function(pt){
+                        $("#collapse5").css("display","block");
+                        $("#colpre5").text(JSON.stringify(pt, null, 4));
+                        
+                        
+                        url = serviceUri + "/MedicationOrder?patient=" + patientId;
+                        $.ajax({
+                            url: url,
+                            type: "GET",
+                            dataType: "json",
+                            headers: {
+                                "Accept": "application/json+fhir",
+                                "Authorization": "Bearer " + accessToken
+                            },
+                        }).done(function(pt){
+                            $("#collapse7").css("display","block");
+                            $("#colpre7").text(JSON.stringify(pt, null, 4));
+                    
+                            
+                            url = epicUri + "/MedicationOrder?patient=" + epicID;
+                            $.ajax({
+                                url: url,
+                                type: "GET",
+                                dataType: "json",
+                                headers: {
+                                    "Accept": "application/json+fhir",
+                                },
+                            }).done(function(pt){
+                                $("#collapse8").css("display","block");
+                                $("#colpre8").text(JSON.stringify(pt, null, 4));
+                                
+                                
+                                
+                                
+                                
+                                url = serviceUri + "/Immunization?patient=" + patientId;
+                                $.ajax({
+                                    url: url,
+                                    type: "GET",
+                                    dataType: "json",
+                                    headers: {
+                                        "Accept": "application/json+fhir",
+                                        "Authorization": "Bearer " + accessToken
+                                    },
+                                }).done(function(pt){
+                                    $("#collapse9").css("display","block");
+                                    $("#colpre9").text(JSON.stringify(pt, null, 4));
+                    
+                            
+                                    url = epicUri + "/Immunization?patient=" + epicID;
+                                    $.ajax({
+                                        url: url,
+                                        type: "GET",
+                                        dataType: "json",
+                                        headers: {
+                                            "Accept": "application/json+fhir",
+                                        },
+                                    }).done(function(pt){
+                                        $("#collapse10").css("display","block");
+                                        $("#colpre10").text(JSON.stringify(pt, null, 4));
+                                
+                                
+                                
+                                
+                                
+                                
+                                        url = serviceUri + "/AllergyIntolerance?patient=" + patientId;
+                                        $.ajax({
+                                            url: url,
+                                            type: "GET",
+                                            dataType: "json",
+                                            headers: {
+                                                "Accept": "application/json+fhir",
+                                                "Authorization": "Bearer " + accessToken
+                                            },
+                                        }).done(function(pt){
+                                            $("#collapse11").css("display","block");
+                                            $("#colpre11").text(JSON.stringify(pt, null, 4));
+                    
+                            
+                                            url = epicUri + "/AllergyIntolerance?patient=" + epicID;
+                                            $.ajax({
+                                                url: url,
+                                                type: "GET",
+                                                dataType: "json",
+                                                headers: {
+                                                    "Accept": "application/json+fhir",
+                                                },
+                                            }).done(function(pt){
+                                                $("#collapse12").css("display","block");
+                                                $("#colpre12").text(JSON.stringify(pt, null, 4));
+
+                                            });
+                                        });
+                
+                                    });
+                                });
+                
+                            });
+                
+                        });
+
+                    });
+                });
+			} else {
+			    var colnum1;
+                var clnpre1;
+                var colnum2;
+                var clnpre2;
+                var url1;
+                var url2;
+        
+                if(data_type == "Patient") {
+                    url1 = serviceUri + "/Patient/" + patientId;
+                    url2 = epicUri + "/Patient/" + epicID;
+                    colnum1 = "#collapse6";
+                    clnpre1 = "#colpre6";
+                    colnum2 = "#collapse5";
+                    clnpre2 = "#colpre5";
+                } else if(data_type == "MedicationOrder"){
+                    url1 = serviceUri + "/" + data_type + "?patient=" + patientId;
+                    url2 = epicUri + "/" + data_type + "?patient=" + epicID;
+                    colnum1 = "#collapse7";
+                    clnpre1 = "#colpre7";
+                    colnum2 = "#collapse8";
+                    clnpre2 = "#colpre8";
+                } else if(data_type == "Immunization"){
+                    url1 = serviceUri + "/" + data_type + "?patient=" + patientId;
+                    url2 = epicUri + "/" + data_type + "?patient=" + epicID;
+                    colnum1 = "#collapse9";
+                    clnpre1 = "#colpre9";
+                    colnum2 = "#collapse10";
+                    clnpre2 = "#colpre10";
+                } else if(data_type == "AllergyIntolerance"){
+                    url1 = serviceUri + "/" + data_type + "?patient=" + patientId;
+                    url2 = epicUri + "/" + data_type + "?patient=" + epicID;
+                    colnum = "#collapse11";
+                    clnpre = "#colpre11";
+                    colnum2 = "#collapse12";
+                    clnpre2 = "#colpre12";
+                }
+			    
+			    $.ajax({
+                    url: url1,
+                    type: "GET",
+                    dataType: "json",
+                    headers: {
+					    "Accept": "application/json+fhir",
+                        "Authorization": "Bearer " + accessToken
+                    },
+                }).done(function(pt){
+                    $('#paraData').hide();
+				    $(colnum1).css("display","block");
+				    $(clnpre1).text(JSON.stringify(pt, null, 4));
+				    
+				    
+                    $.ajax({
+                        url: url2,
+                        type: "GET",
+                        dataType: "json",
+                        headers: {
+                            "Accept": "application/json+fhir",
+                        },
+                    }).done(function(pt){
+                        $(colnum2).css("display","block");
+                        $(clnpre2).text(JSON.stringify(pt, null, 4));
+                
+                    });
+                
+                });
+			
+			
+			}
+			
+		}else {
+		
+		
+		if(data_type == "All") {
+			url = serviceUri + "/Patient/" + patientId;
+			$.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                headers: {
+					"Accept": "application/json+fhir",
+                    "Authorization": "Bearer " + accessToken
+                },
+            }).done(function(pt){
+				//$("#pannel_body").text("");
+				//$("#pannel_body").append(
+				//	"<div class='header'>Patient Information:</div><div><pre>" + JSON.stringify(pt, null, 4) + "</pre></div>");
+				
+				$('#paraData').hide();
+				$("#collapse1").css("display","block");
+				$("#colpre1").text(JSON.stringify(pt, null, 4));
+				
+				currentData.push(JSON.stringify(pt));
+				
+				
+				url = serviceUri + "/MedicationOrder?patient=" + patientId;
+				$.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                headers: {
+					"Accept": "application/json+fhir",
+                    "Authorization": "Bearer " + accessToken
+                },
+				}).done(function(pt){
+					//$('#pannel_container').append($("<div class='panel-body' id='pannel_MedicationOrder'></div>"));
+					//$("#pannel_MedicationOrder").append(
+					//	"<div class='header'>MedicationOrder:</div><div><pre>" + JSON.stringify(pt, null, 4) + "</pre></div>");
+					
+					$("#collapse2").css("display","block");
+				    $("#colpre2").text(JSON.stringify(pt, null, 4));
+					
+					currentData.push(JSON.stringify(pt));
+					
+					
+					url = serviceUri + "/Immunization?patient=" + patientId;
+					$.ajax({
+					url: url,
+					type: "GET",
+					dataType: "json",
+					headers: {
+						"Accept": "application/json+fhir",
+						"Authorization": "Bearer " + accessToken
+					},
+					}).done(function(pt){
+						//$('#pannel_container').append($("<div class='panel-body' id='pannel_Immunization'></div>"));
+						//$("#pannel_Immunization").append(
+						//	"<div class='header'>Immunization:</div><div><pre>" + JSON.stringify(pt, null, 4) + "</pre></div>");
+						
+						$("#collapse3").css("display","block");
+				        $("#colpre3").text(JSON.stringify(pt, null, 4));
+					
+						
+						currentData.push(JSON.stringify(pt));
+					
+					
+						url = serviceUri + "/AllergyIntolerance?patient=" + patientId;
+						$.ajax({
+						url: url,
+						type: "GET",
+						dataType: "json",
+						headers: {
+							"Accept": "application/json+fhir",
+							"Authorization": "Bearer " + accessToken
+						},
+						}).done(function(pt){
+							//$('#pannel_container').append($("<div class='panel-body' id='pannel_AllergyIntolerance'></div>"));
+							//$("#pannel_AllergyIntolerance").append(
+							//	"<div class='header'>AllergyIntolerance:</div><div><pre>" + JSON.stringify(pt, null, 4) + "</pre></div>");
+							
+							$("#collapse4").css("display","block");
+				            $("#colpre4").text(JSON.stringify(pt, null, 4));
+					
+							
+							currentData.push(JSON.stringify(pt));
+							$('#download_button').removeClass("disabled");
+							$('#progress').hide();
+							$('#progress').removeClass('col-md-2');
+							$('#blue').css("display","block");
+							$('#blue').addClass('col-md-2');
+						});
+					});
+				});
+            });
+		} else {
+		    
+		    var colnum;
+		    var clnpre;
+		
+			if(data_type == "Patient") {
+				url = serviceUri + "/Patient/" + patientId;
+				colnum = "#collapse1";
+				clnpre = "#colpre1";
+			} else if(data_type == "MedicationOrder"){
+				url = serviceUri + "/" + data_type + "?patient=" + patientId;
+				colnum = "#collapse2";
+				clnpre = "#colpre2";
+			} else if(data_type == "Immunization"){
+				url = serviceUri + "/" + data_type + "?patient=" + patientId;
+				colnum = "#collapse3";
+				clnpre = "#colpre3";
+			} else if(data_type == "AllergyIntolerance"){
+				url = serviceUri + "/" + data_type + "?patient=" + patientId;
+				colnum = "#collapse4";
+				clnpre = "#colpre4";
+			}	
+		
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                headers: {
+					"Accept": "application/json+fhir",
+                    "Authorization": "Bearer " + accessToken
+                },
+            }).done(function(pt){
+				//$("#pannel_body").text("");
+				//$("#pannel_body").append(
+				//	"<div class='header'>Patient Information:</div><div><pre>" + JSON.stringify(pt, null, 4) + "</pre></div>");
+				
+				$('#paraData').hide();
+				$(colnum).css("display","block");
+				$(clnpre).text(JSON.stringify(pt, null, 4));
+				
+				//for test demo, add patientID information to table
+				var fname = pt.name[0].given[0];
+				var lname = pt.name[0].family[0];
+				var birth = pt.birthDate;
+				$('#tb1').append('<table><tr><th>Given Name</th><th>Family Name</th><th>BirthDate</th></tr><tr><td>'+ fname +'</td><td>' + lname + '</td><td>' + birth + '</td></tr></table>');
+				
+				currentData.push(JSON.stringify(pt));
+				$('#download_button').removeClass("disabled");
+				$('#progress').hide();
+				$('#progress').removeClass('col-md-2');
+				$('#blue').css("display","block");
+				$('#blue').addClass('col-md-2');
+            });
+		}
+		}//end for epic non-auth test
+   });
+
+
+
+
+
+
+$("#pannel_head").on('click','#save',function(){
+	console.log("button worked.");
+	$.ajax
+	({
+		type: "POST",
+		url: "http://52.54.75.123/", 
+		contentType: "application/json",
+		dataType: "json",
+		data:JSON.stringify({'myArray' : currentData})
+	}).done(function ( data ) {
+		console.log("ajax callback response:"+JSON.stringify(data));
+	}).fail(function(err) {
+		console.log("ajax fail: " + err.status);
+	});
+});
+
+
+
+
+
+
+
+
+
+// Convenience function for parsing of URL parameters
+        // based on http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+        function getUrlParameter(sParam)
+        {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) 
+            {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) {
+                    var res = sParameterName[1].replace(/\+/g, '%20');
+                    return decodeURIComponent(res);
+                }
+            }
+        }
+
+});
+

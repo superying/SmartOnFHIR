@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<head>
+<meta charset = 'utf-8'>
+    <title></title>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/i18n/defaults-*.min.js"></script>-->
+<!-- set up socket.io -->
+<script src = "./socket.io/socket.io.js"></script>
+    
+<link rel = "stylesheet" type = "text/css" href="./css/index.css" >
+<script src="./index4cerner.js"></script>
+
+</head>
+<body>
+    
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">UML-FHIR-demo</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="row top-buffer"></div>
+<div class="row top-buffer"></div>
+<div class="row top-buffer"></div>
+
+<div class = 'row'>
+    <div class = 'col-md-4 col-md-offset-4'>
+        <button id = 'download_button' href="#" class="btn btn-success btn-block btn-lg">
+            <span class="glyphicon glyphicon-download-alt"></span> Start Downloading Data
+        </button>
+    </div>
+</div>
+<div class="row top-buffer"></div>
+<div class="row top-buffer"></div>
+
+<div class = 'row animation'>
+        <div class = 'col-md-3 col-md-offset-2'>
+            <img id = "macbook" src="./macbook.png" />
+        </div>
+		
+		<div class = 'col-md-2'>
+		<div class='row'>
+        <div id = "blue" class = 'col-md-12'>
+                <span class = " glyphicon glyphicon-chevron-right blue"></span>
+            
+        </div>
+        <div  id = "progress">
+                   <span class ="glyphicon glyphicon-chevron-left green"></span>
+        </div>
+		</div>
+		
+        <div class='row'>
+		<div id = "blue2" class = 'col-md-12'>
+                <span class = " glyphicon glyphicon-chevron-right blue2"></span>
+            
+        </div>
+        <div  id = "progress2">
+                   <span class ="glyphicon glyphicon-chevron-left green2"></span>
+        </div>
+		</div>
+		</div>
+		
+		<div class='col-md-5'>
+        <div class='row'>
+			<div class = 'col-md-4'>
+				<img id = "imac" src='./server_Cerner.png' />
+			</div>
+		</div>
+		<div class='row'>
+			<div class = 'col-md-4'>
+				<img id = "imac2" src='./server_Epic.png' />
+			</div>
+		</div>
+		</div>
+</div>  
+<div class="row top-buffer"></div>
+<div class="row top-buffer"></div>
+
+<div class = 'row'>
+	<div class="col-md-6">
+		   <div class="panel panel-success" id="pannel_container">
+			   <div class="panel-heading" id="pannel_head">Data Information From Cerner  </div>
+				<div class="panel-body" id="pannel_body">
+					<p id="paraData">Data will be shown here...</p>
+					<div class="container" id="collapse1">
+						<a href="#col1" class="btn btn-success" data-toggle="collapse">Patient Info</a>
+						<div id="col1" class="collapse">
+							<pre id="colpre1" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse2">
+						<a href="#col2" class="btn btn-success" data-toggle="collapse">MedicationOrder</a>
+						<div id="col2" class="collapse">
+							<pre id="colpre2" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse3">
+						<a href="#col3" class="btn btn-success" data-toggle="collapse">Immunization</a>
+						<div id="col3" class="collapse">
+							<pre id="colpre3" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse4">
+						<a href="#col4" class="btn btn-success" data-toggle="collapse">AllergyIntolerance</a>
+						<div id="col4" class="collapse">
+							<pre id="colpre4" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse5">
+						<a href="#col5" class="btn btn-success" data-toggle="collapse">Condition</a>
+						<div id="col5" class="collapse">
+							<pre id="colpre5" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse6">
+						<a href="#col6" class="btn btn-success" data-toggle="collapse">Observation</a>
+						<div id="col6" class="collapse">
+							<pre id="colpre6" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse7">
+						<a href="#col7" class="btn btn-success" data-toggle="collapse">DiagnosticReport</a>
+						<div id="col7" class="collapse">
+							<pre id="colpre7" class="col-md-6"></pre>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		   <div class="panel panel-success" id="pannel_container2">
+			   <div class="panel-heading" id="pannel_head2">Data Information From Epic  </div>
+				<div class="panel-body" id="pannel_body2">
+					<p id="paraData2">Data will be shown here...</p>
+					<div class="container" id="collapse21">
+						<a href="#col21" class="btn btn-success" data-toggle="collapse">Patient Info</a>
+						<div id="col21" class="collapse">
+							<pre id="colpre21" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse22">
+						<a href="#col22" class="btn btn-success" data-toggle="collapse">MedicationOrder</a>
+						<div id="col22" class="collapse">
+							<pre id="colpre22" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse23">
+						<a href="#col23" class="btn btn-success" data-toggle="collapse">Immunization</a>
+						<div id="col23" class="collapse">
+							<pre id="colpre23" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse24">
+						<a href="#col24" class="btn btn-success" data-toggle="collapse">AllergyIntolerance</a>
+						<div id="col24" class="collapse">
+							<pre id="colpre24" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse25">
+						<a href="#col25" class="btn btn-success" data-toggle="collapse">Condition</a>
+						<div id="col25" class="collapse">
+							<pre id="colpre25" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse26">
+						<a href="#col26" class="btn btn-success" data-toggle="collapse">Observation</a>
+						<div id="col26" class="collapse">
+							<pre id="colpre26" class="col-md-6"></pre>
+						</div>
+					</div>
+					<div class="container" id="collapse27">
+						<a href="#col27" class="btn btn-success" data-toggle="collapse">DiagnosticReport</a>
+						<div id="col27" class="collapse">
+							<pre id="colpre27" class="col-md-6"></pre>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+
+<div class = 'row'></div>
+<div class = 'row'></div>
+
+<div class = 'row'>
+	<div class = 'col-md-8 col-md-offset-2'>
+		<div class="panel panel-success" id="pannel_container3">
+		   <div class="panel-heading" id="pannel_head3">Merged Data Information  </div>
+			<div class="panel-body" id="pannel_body3">
+				<p id="paraData3">Data will be shown here...</p>
+				<div class="container" id="collapse31">
+					<a href="#col31" class="btn btn-success" data-toggle="collapse">Patient Info</a>
+					<div id="col31" class="collapse">
+						<pre id="colpre31" class="col-md-8"></pre>
+					</div>
+				</div>
+				<div class="container" id="collapse32">
+					<a href="#col32" class="btn btn-success" data-toggle="collapse">MedicationOrder</a>
+					<div id="col32" class="collapse">
+						<pre id="colpre32" class="col-md-8"></pre>
+					</div>
+				</div>
+				<div class="container" id="collapse33">
+					<a href="#col33" class="btn btn-success" data-toggle="collapse">Immunization</a>
+					<div id="col33" class="collapse">
+						<pre id="colpre33" class="col-md-8"></pre>
+					</div>
+				</div>
+				<div class="container" id="collapse34">
+					<a href="#col34" class="btn btn-success" data-toggle="collapse">AllergyIntolerance</a>
+					<div id="col34" class="collapse">
+						<pre id="colpre34" class="col-md-8"></pre>
+					</div>
+				</div>
+				<div class="container" id="collapse35">
+					<a href="#col35" class="btn btn-success" data-toggle="collapse">Condition</a>
+					<div id="col35" class="collapse">
+						<pre id="colpre35" class="col-md-8"></pre>
+					</div>
+				</div>
+				<div class="container" id="collapse36">
+					<a href="#col36" class="btn btn-success" data-toggle="collapse">Observation</a>
+					<div id="col36" class="collapse">
+						<pre id="colpre36" class="col-md-8"></pre>
+					</div>
+				</div>
+				<div class="container" id="collapse37">
+					<a href="#col37" class="btn btn-success" data-toggle="collapse">DiagnosticReport</a>
+					<div id="col37" class="collapse">
+						<pre id="colpre37" class="col-md-8"></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+    
+<div class = 'col-md-12 modal-overlay'>
+</div>  
+    
+<div class = 'submit_form'>
+            <a id="close">&times;</a>
+            <h3> Choose Medical Data Type </h3>
+            <select class="selectpicker" id = "selectpicker" data-style="btn-success" data-width="100%">
+                <option>All</option>
+				<option>Patient</option>
+                <option>MedicationOrder</option>
+                <option>Immunization</option>
+                <option>AllergyIntolerance</option>
+                <option>Condition</option>
+                <option>Observation</option>
+                <option>DiagnosticReport</option>
+            </select>
+            </br>
+            <label id= 'class'>Patient Name</label>
+            <!--<input type="text" class="form-control" id="input_id">-->
+			<select class="selectpicker" id = "selectPatient" data-style="btn-success" data-width="100%">
+                <option>SMART, Wilma</option>
+                <option>SMART, Nancy</option>
+                <option>SMART, Joe</option>
+                <option>SMART, Hailey</option>
+				<option>SMART, Timmy</option>
+                <option>SMART, FRED RICK</option>
+                <option>PETERS, TIMOTHY</option>
+		<option>Test Robot</option>
+            </select>
+			<label id= 'class'>   </label>
+            <button href="#" id = "Submit" class="btn btn-success btn-block"> Submit </button>
+</div>
+    
+</body>

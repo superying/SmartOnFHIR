@@ -1,0 +1,315 @@
+
+ a:hover { text-decoration: none; }
+
+ #macbook {
+	max-width:120%;
+	margin-top : 40px;
+}
+
+ #imac {
+	max-width:90%
+}
+
+ #imac2 {
+	max-width:90%
+}
+
+.top-buffer { 
+	margin-top:20px; 
+}
+
+
+.blue {
+	color : #54763c;
+	top : 50px;
+	position: absolute;
+	animation : arrowMove 2s infinite linear;
+
+}
+
+.blue2 {
+	color : #54763c;
+	top : 150px;
+	position: absolute;
+	animation : arrowMove2 2s infinite linear;
+
+}
+
+.animation{
+	position : relative;
+}
+
+
+@keyframes arrowMove {
+	0%  {transform : translateX(0px);}
+	20% {transform : translateX(35px);}
+	40% {transform : translateX(70px);}
+	60% {transform : translateX(105px);}
+	80% {transform : translateX(140px);}
+	100% {transform : translateX(175px);}
+	
+}
+
+@keyframes arrowMove2 {
+	0%  {transform : translateX(0px);}
+	20% {transform : translateX(35px);}
+	40% {transform : translateX(70px);}
+	60% {transform : translateX(105px);}
+	80% {transform : translateX(140px);}
+	100% {transform : translateX(175px);}
+	
+}
+
+@keyframes fadeIn {
+	0% { opacity : 0; visibility : hidden;}
+	100% { opacity : 1; visibility : visible;}
+}
+
+@keyframes OverlayfadeIn {
+	0% { opacity : 0; visibility : hidden;}
+	100% { opacity : .7; visibility : visible;}
+}
+
+@keyframes slideUp {
+	0% { transform : translateY(0px);}
+	100% { transform : translateY(500px);}
+
+}
+
+@keyframes slideUpTest {
+	0% { transform : translateY(0px);}
+	100% { transform : translateY(-350px);}
+
+}
+
+
+@keyframes slideUpSmall {
+	0% {transform : translateY(80px);}
+	100% {transform : translateY(0px);}
+}
+
+.modal-overlay {
+	background-color: #000;
+    min-height: 120%
+	opacity : 0;
+	visibility:hidden;
+    width:100%; 
+    height:100%; 
+    z-index:10;
+    top: 0;
+    left:0; 
+    position:fixed; 
+}
+
+.modal-overlay.active {
+	animation : OverlayfadeIn .25s forwards;
+} 
+
+.submit_form {
+	position : absolute;
+	height : 500px;
+	bottom : -500px ;
+	opacity : 0; 
+	visibility : hidden;
+	left : 38%;
+	z-index: 11;
+	display:none;
+}
+
+.submit_form.active{
+	display:block;
+	animation: slideUpTest .65s .5s  forwards,fadeIn 1s forwards
+}
+
+
+.modal.active  .form-field{
+	animation: slideUpSmall .25s, .75s, forwards,
+	fadeIn .25s, .8s, forwards
+}
+
+#test {
+	position : absolute;
+	bottom : -20px;
+	height: 10px;
+	width : 200px;
+	opacity : 0; 
+	visibility : hidden;
+	left :33.3333%;
+	z-index : 11;
+}
+
+#test.active{
+
+	animation: slideUpTest 1s forwards,fadeIn 1s forwards
+}
+
+#input_id {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	width : 100%;
+}
+
+
+h3 {
+	color: white;
+	margin-bottom :5%;
+}
+
+
+.submit_form label {
+	color : white;
+    margin-top:20px;
+    position:relative;
+    color : grey; 
+
+}
+.submit_form #close{
+	position:absolute;
+	top:-15px;
+	right:1px;
+	font-size: 200%;
+	transition : transform 3s;
+}
+
+#close:hover {
+	transform: rotate(360deg);
+}
+
+
+
+ #progress {
+ 	display: none;
+ }
+ 
+ #progress2 {
+ 	display: none;
+ }
+
+ .green {
+	color : #54763c;
+	top : 70px;
+	position: absolute;
+	animation : fileMove 1s infinite linear;
+
+}
+
+ .green2 {
+	color : #54763c;
+	top : 170px;
+	position: absolute;
+	animation : fileMove2 1s infinite linear;
+
+}
+
+@keyframes fileMove {
+	0%  {transform : translateX(175px);}
+	20% {transform : translateX(100px);}
+	40% {transform : translateX(70px);}
+	100% {transform : translateX(0px);}
+}
+
+@keyframes fileMove2 {
+	0%  {transform : translateX(175px);}
+	20% {transform : translateX(100px);}
+	40% {transform : translateX(70px);}
+	100% {transform : translateX(0px);}
+}
+
+#save {
+	position:relative;
+	float : right;
+	
+
+}
+
+#collapse1 {
+    display: none;
+}
+
+#collapse2 {
+    display: none;
+}
+
+#collapse3 {
+    display: none;
+}
+
+#collapse4 {
+    display: none;
+}
+
+#collapse5 {
+    display: none;
+}
+
+#collapse6 {
+    display: none;
+}
+
+#collapse7 {
+    display: none;
+}
+
+#collapse8 {
+    display: none;
+}
+
+#collapse9 {
+    display: none;
+}
+
+#collapse10 {
+    display: none;
+}
+
+#collapse11 {
+    display: none;
+}
+
+#collapse12 {
+    display: none;
+}
+
+
+
+
+
+
+
+
+#collapse21 {
+    display: none;
+}
+
+#collapse22 {
+    display: none;
+}
+
+#collapse23 {
+    display: none;
+}
+
+#collapse24 {
+    display: none;
+}
+
+
+#collapse31 {
+    display: none;
+}
+
+#collapse32 {
+    display: none;
+}
+
+#collapse33 {
+    display: none;
+}
+
+#collapse34 {
+    display: none;
+}
+
+pre {
+    overflow: scroll;
+}
