@@ -281,7 +281,7 @@ $(document).ready(function(){
 							var len = data1.entry.length;
 							for(var i=0; i<len; i++) {
 								tmp1 = tmp1 + "<p><b>Date: </b>" + data1.entry[i].resource.dateWritten + "<br>";
-								tmp1 = tmp1 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[i].resource.medicationCodeableConcept + "</a>";
+								tmp1 = tmp1 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[i].resource.medicationCodeableConcept.text + "</a>";
 								tmp1 = tmp1 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[i].resource.dosageInstruction[0].text;
 								tmp1 = tmp1 + "<br></p>";	
 							}
@@ -345,14 +345,14 @@ $(document).ready(function(){
 											len2++;
 										} else {
 											tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-											tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+											tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 											tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 											tmp3 = tmp3 + "<br></p>";
 											len1++;
 										}
 									} else if(data1.entry[len1].resource.dateWritten) {
 										tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-										tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+										tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 										tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 										tmp3 = tmp3 + "<br></p>";
 										len1++;
@@ -368,7 +368,7 @@ $(document).ready(function(){
 								
 								while(len1<data1.entry.length) {
 									tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-									tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+									tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 									tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 									tmp3 = tmp3 + "<br></p>";
 									len1++;
@@ -1189,7 +1189,7 @@ $(document).ready(function(){
 						var len = data1.entry.length;
 						for(var i=0; i<len; i++) {
 							tmp1 = tmp1 + "<p><b>Date: </b>" + data1.entry[i].resource.dateWritten + "<br>";
-							tmp1 = tmp1 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[i].resource.medicationCodeableConcept + "</a>";
+							tmp1 = tmp1 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[i].resource.medicationCodeableConcept.text + "</a>";
 							tmp1 = tmp1 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[i].resource.dosageInstruction[0].text;
 							tmp1 = tmp1 + "<br></p>";								
 						}
@@ -1254,14 +1254,14 @@ $(document).ready(function(){
 										len2++;
 									} else {
 										tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-										tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+										tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 										tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 										tmp3 = tmp3 + "<br></p>";
 										len1++;
 									}
 								} else if(data1.entry[len1].resource.dateWritten) {
 									tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-									tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+									tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 									tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 									tmp3 = tmp3 + "<br></p>";
 									len1++;
@@ -1277,7 +1277,7 @@ $(document).ready(function(){
 							
 							while(len1<data1.entry.length) {
 								tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-								tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+								tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 								tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 								tmp3 = tmp3 + "<br></p>";
 								len1++;
@@ -2187,7 +2187,7 @@ $(document).ready(function(){
 							var len = data1.entry.length;
 							for(var i=0; i<len; i++) {
 								tmp1 = tmp1 + "<p><b>Date: </b>" + data1.entry[i].resource.dateWritten + "<br>";
-								tmp1 = tmp1 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[i].resource.medicationCodeableConcept + "</a>";
+								tmp1 = tmp1 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[i].resource.medicationCodeableConcept.text + "</a>";
 								tmp1 = tmp1 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[i].resource.dosageInstruction[0].text;
 								tmp1 = tmp1 + "<br></p>";	
 							}
@@ -2251,14 +2251,14 @@ $(document).ready(function(){
 											len2++;
 										} else {
 											tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-											tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+											tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 											tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 											tmp3 = tmp3 + "<br></p>";
 											len1++;
 										}
 									} else if(data1.entry[len1].resource.dateWritten) {
 										tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-										tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+										tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 										tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 										tmp3 = tmp3 + "<br></p>";
 										len1++;
@@ -2274,7 +2274,7 @@ $(document).ready(function(){
 								
 								while(len1<data1.entry.length) {
 									tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-									tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+									tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 									tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 									tmp3 = tmp3 + "<br></p>";
 									len1++;
@@ -3133,7 +3133,7 @@ $(document).ready(function(){
 						var len = data1.entry.length;
 						for(var i=0; i<len; i++) {
 							tmp1 = tmp1 + "<p><b>Date: </b>" + data1.entry[i].resource.dateWritten + "<br>";
-							tmp1 = tmp1 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[i].resource.medicationCodeableConcept + "</a>";
+							tmp1 = tmp1 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[i].resource.medicationCodeableConcept.text + "</a>";
 							tmp1 = tmp1 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[i].resource.dosageInstruction[0].text;
 							tmp1 = tmp1 + "<br></p>";								
 						}
@@ -3198,14 +3198,14 @@ $(document).ready(function(){
 										len2++;
 									} else {
 										tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-										tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+										tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 										tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 										tmp3 = tmp3 + "<br></p>";
 										len1++;
 									}
 								} else if(data1.entry[len1].resource.dateWritten) {
 									tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-									tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+									tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 									tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 									tmp3 = tmp3 + "<br></p>";
 									len1++;
@@ -3221,7 +3221,7 @@ $(document).ready(function(){
 							
 							while(len1<data1.entry.length) {
 								tmp3 = tmp3 + "<p><b>Date: </b>" + data1.entry[len1].resource.dateWritten + "<br>";
-								tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept + "</a>";
+								tmp3 = tmp3 + "<b>Medication Name: </b><a href='#' data-toggle='tooltip' title='More details...TBD'>" + data1.entry[len1].resource.medicationCodeableConcept.text + "</a>";
 								tmp3 = tmp3 + "<br>" + "<b>Dosage Instructions: </b>" + data1.entry[len1].resource.dosageInstruction[0].text;
 								tmp3 = tmp3 + "<br></p>";
 								len1++;
