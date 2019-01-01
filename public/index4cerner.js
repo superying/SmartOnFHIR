@@ -1008,9 +1008,11 @@ $(document).ready(function(){
 																			tmp3 = tmp3 + "<b>Status: </b>" + data2.entry[len2].resource.status + "<br>";
 																			
 																			var tmps = "";
-																			var lens = data2.entry[len2].resource.result.length;
-																			for(var j=0; j<lens; j++) {
-																				tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+																			if(undefined !== data2.entry[len2].resource.result && data2.entry[len2].resource.result.length) {
+																			    var lens = data2.entry[len2].resource.result.length;
+																			    for(var j=0; j<lens; j++) {
+																				    tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+																			    }
 																			}
 																			
 																			tmp3 = tmp3 + tmps;
@@ -2031,9 +2033,11 @@ $(document).ready(function(){
 									tmp3 = tmp3 + "<b>Status: </b>" + data2.entry[len2].resource.status + "<br>";
 									
 									var tmps = "";
-									var lens = data2.entry[len2].resource.result.length;
-									for(var j=0; j<lens; j++) {
-										tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+									if(undefined !== data2.entry[len2].resource.result && data2.entry[len2].resource.result.length) {
+									    var lens = data2.entry[len2].resource.result.length;
+									    for(var j=0; j<lens; j++) {
+										    tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+									    }
 									}
 								
 									tmp3 = tmp3 + tmps;
@@ -2066,9 +2070,11 @@ $(document).ready(function(){
 								tmp3 = tmp3 + "<b>Status: </b>" + data2.entry[len2].resource.status + "<br>";
 								
 								var tmps = "";
-								var lens = data2.entry[len2].resource.result.length;
-								for(var j=0; j<lens; j++) {
-									tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+								if(undefined !== data2.entry[len2].resource.result && data2.entry[len2].resource.result.length) {
+								    var lens = data2.entry[len2].resource.result.length;
+								    for(var j=0; j<lens; j++) {
+									    tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+								    }
 								}
 								
 								tmp3 = tmp3 + tmps;
@@ -2917,9 +2923,11 @@ $(document).ready(function(){
 																				tmp3 = tmp3 + "<b>Status: </b>" + data2.entry[len2].resource.status + "<br>";
 																				
 																				var tmps = "";
-																				var lens = data2.entry[len2].resource.result.length;
-																				for(var j=0; j<lens; j++) {
-																					tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+																				if(undefined !== data2.entry[len2].resource.result && data2.entry[len2].resource.result.length) {
+																				    var lens = data2.entry[len2].resource.result.length;
+																				    for(var j=0; j<lens; j++) {
+																					    tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+																				    }
 																				}
 																			
 																				tmp3 = tmp3 + tmps;
@@ -2952,9 +2960,11 @@ $(document).ready(function(){
 																			tmp3 = tmp3 + "<b>Status: </b>" + data2.entry[len2].resource.status + "<br>";
 																			
 																			var tmps = "";
-																			var lens = data2.entry[len2].resource.result.length;
-																			for(var j=0; j<lens; j++) {
-																				tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+																			if(undefined !== data2.entry[len2].resource.result && data2.entry[len2].resource.result.length) {
+																			    var lens = data2.entry[len2].resource.result.length;
+																			    for(var j=0; j<lens; j++) {
+																				    tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+																			    }
 																			}
 																			
 																			tmp3 = tmp3 + tmps;
@@ -4009,9 +4019,11 @@ $(document).ready(function(){
 									tmp3 = tmp3 + "<b>Status: </b>" + data2.entry[len2].resource.status + "<br>";
 									
 									var tmps = "";
-									var lens = data2.entry[len2].resource.result.length;
-									for(var j=0; j<lens; j++) {
-										tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+									if(undefined !== data2.entry[len2].resource.result && data2.entry[len2].resource.result.length) {
+									    var lens = data2.entry[len2].resource.result.length;
+									    for(var j=0; j<lens; j++) {
+										    tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+									    }
 									}
 								
 									tmp3 = tmp3 + tmps;
@@ -4044,9 +4056,11 @@ $(document).ready(function(){
 								tmp3 = tmp3 + "<b>Status: </b>" + data2.entry[len2].resource.status + "<br>";
 								
 								var tmps = "";
-								var lens = data2.entry[len2].resource.result.length;
-								for(var j=0; j<lens; j++) {
-									tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+								if(undefined !== data2.entry[len2].resource.result && data2.entry[len2].resource.result.length) {
+								    var lens = data2.entry[len2].resource.result.length;
+								    for(var j=0; j<lens; j++) {
+									    tmps = tmps + "<b>Result: </b>" + data2.entry[len2].resource.result[j].display + "<br>";
+								    }
 								}
 								
 								tmp3 = tmp3 + tmps;
